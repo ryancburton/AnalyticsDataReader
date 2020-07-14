@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="8.0.2" />
+    <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="5.2.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AnalyticsDataReader.Domain\AnalyticsDataReader.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
