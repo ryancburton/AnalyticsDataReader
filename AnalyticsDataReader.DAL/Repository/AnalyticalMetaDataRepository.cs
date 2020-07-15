@@ -16,7 +16,7 @@ namespace AnalyticsDataReader.DAL.Repository
             _appDbContext = appDbContext;
         }
 
-        public async Task<IEnumerable<AnalyticalMetaData>> GetDataAllAsync() => await _appDbContext.Set<AnalyticalMetaData>().ToListAsync();
+        public async Task<IEnumerable<AnalyticalMetaData>> GetDataAllAsync() => await _appDbContext.Set<AnalyticalMetaData>().ToListAsync().;
 
 
         public async Task<IEnumerable<AnalyticalMetaData>> GetDataRangeAsync(DateTime startDate, DateTime endDate)
