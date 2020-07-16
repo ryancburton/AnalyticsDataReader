@@ -115,10 +115,16 @@ namespace AnalyticsDataReader.Domain.Commands.Data
             var average = _points.Average(a => a.point);
             var ExpWindow = _points.Min(a => a.point);
 
-            var groups = _points.GroupBy(q => new
-            {
-                Hour = q.DateTime.Hour
-            });
+            var maxHour = _points.GroupBy(q => new
+                                        {
+                                            Year = q.DateTime.Year,
+                                            Month = q.DateTime.Month,
+                                            Day = q.DateTime.Day,
+                                            Hour = q.DateTime.Hour
+
+                                        })
+                                .Select(s => new { Date = s.Key, MaxPoints = s.Sum(c => c.point) })
+                                .OrderByDescending(group => group.MaxPoints).First();
 
             AnalyticalMetaData analyticalMetaData = new AnalyticalMetaData
             {
@@ -126,7 +132,7 @@ namespace AnalyticsDataReader.Domain.Commands.Data
                 MinForSeries = min,
                 MaxForSeries = max,
                 AverageForSeries = average,
-                StartOfMostExpensiveHour = DateTime.Now,
+                StartOfMostExpensiveHour = new DateTime(maxHour.Date.Year, maxHour.Date.Month, maxHour.Date.Day, maxHour.Date.Hour, 0, 0),
                 SeriesStartID = _points[0].Id,
                 SeriesEndID = _points[_points.Count - 1].Id
             };
