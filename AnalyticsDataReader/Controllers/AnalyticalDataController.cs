@@ -57,19 +57,19 @@ namespace AnalyticsDataReader.Controllers
         [ProducesResponseType(404)]
         public async Task<IEnumerable<AnalyticalDataPoint>> GetAnalyticalDataRange(DateTime startDate, DateTime endDate)
         {
-            return await _mediator.Send(new GetDataRangeQuery(startDate, endDate)); ;
+            return await _mediator.Send(new GetDataRangeQuery(startDate, endDate));
         }
 
         /// <summary>
         /// Add new DataSet
         /// </summary>
-        /// <param name="fileToImport">fileToImport</param>
+        // /// <param name="fileToImport">fileToImport</param>
         /// <returns>Upload results</returns>
-        [HttpPost("ImportNewDataSet/")]//fileToImport={fileToImport}
+        [HttpPost("ImportNewDataSet/{fileToImport}")]
 
         public async Task<Response<FileLoadResults>> ImportNewDataSet(string fileToImport)
         {
-            fileToImport = _configuration.GetSection("LocalUploadPath").Value + "sampleSheet.csv";
+            fileToImport = _configuration.GetSection("LocalUploadPath").Value + fileToImport;
             return await _mediator.Send(new UploadDataCommand(fileToImport));
         }
     }

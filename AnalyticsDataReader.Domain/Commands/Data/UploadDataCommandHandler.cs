@@ -108,7 +108,7 @@ namespace AnalyticsDataReader.Domain.Commands.Data
             }
         }
 
-        public async void CalculateAnalytics()
+        public void CalculateAnalytics()
         {
             var min = _points.Min(a => a.point);
             var max = _points.Max(a => a.point);
@@ -137,7 +137,7 @@ namespace AnalyticsDataReader.Domain.Commands.Data
                 SeriesEndID = _points[_points.Count - 1].Id
             };
 
-            await _analyticalMetaDataRepository.AddNewEntity(analyticalMetaData);
+            _analyticalMetaDataRepository.AddNewEntity(analyticalMetaData);
         }
     }
 }
